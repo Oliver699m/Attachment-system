@@ -1,0 +1,108 @@
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    isolation: isolate;
+}
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    pointer-events: none;
+    z-index: -1;
+}
+
+body::before {
+    inset: 0;
+    opacity: 0.5;
+    background-image:
+        repeating-linear-gradient(0deg, transparent 0 55px, rgba(37, 83, 91, 0.12) 56px 57px),
+        repeating-linear-gradient(90deg, transparent 0 55px, rgba(37, 83, 91, 0.12) 56px 57px),
+        linear-gradient(135deg, transparent 0 35%, rgba(29, 100, 111, 0.13) 35.1% 35.25%, transparent 35.35%),
+        linear-gradient(35deg, transparent 0 64%, rgba(29, 100, 111, 0.12) 64.1% 64.25%, transparent 64.35%);
+    background-size: 56px 56px, 56px 56px, 100% 100%, 100% 100%;
+    animation: tracking-map-drift 48s linear infinite;
+}
+
+body::after {
+    top: 24vh;
+    right: -4rem;
+    width: min(42vw, 560px);
+    height: min(34vw, 360px);
+    border: 2px dashed rgba(20, 91, 105, 0.22);
+    border-radius: 48% 52% 43% 57%;
+    background: radial-gradient(circle, #ed9f3c 0 4px, rgba(237, 159, 60, 0.22) 5px 10px, transparent 11px) 20% 27% / 100% 100% no-repeat;
+    animation: tracking-route-drift 18s ease-in-out infinite alternate;
+}
+
+@keyframes tracking-map-drift {
+    to { background-position: 112px 56px, 56px 112px, 0 0, 0 0; }
+}
+
+@keyframes tracking-route-drift {
+    to { transform: translate(-12px, 10px) rotate(3deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body::before,
+    body::after {
+        animation: none;
+    }
+}
+
+.itrack-footer {
+    width: 100%;
+    margin-top: auto;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: center;
+    background: #fff;
+    border-top: 1px solid #e5e7eb;
+}
+
+.itrack-footer__brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: 100%;
+}
+
+.itrack-footer__logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
+
+.itrack-footer__wordmark {
+    color: #292929;
+    font-size: 22px;
+    line-height: 1.1;
+    white-space: nowrap;
+}
+
+.itrack-footer__wordmark span {
+    color: #8fba3b;
+}
+
+.itrack-footer__tagline {
+    margin-top: 3px;
+    color: #737373;
+    font-size: 12px;
+}
+
+@media (max-width: 480px) {
+    .itrack-footer {
+        padding: 12px 16px;
+    }
+
+    .itrack-footer__logo {
+        width: 40px;
+        height: 40px;
+    }
+
+    .itrack-footer__wordmark {
+        font-size: 19px;
+    }
+}
